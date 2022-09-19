@@ -14,12 +14,12 @@ iniciar_trivia = True
 intentos = 0
 # Lo primero es mostrar en pantalla el texto de bienvenida para quien juegue tu trivia.
 cadena = "bienvenido a mi trivia sobre cultura general".title()
-print(MAGENTA+cadena.center(100, " "))
+print("\033[35m"+cadena.center(80, " "))
 for numero_carga in range(3, 0, -1):
     print(numero_carga, "...")
     time.sleep(1)
 print("\n")
-print("Pondremos a Prueba tus Conocimientos:\n")
+print("Pondremos a Prueba tus Conocimientos:\n\033[39m")
 time.sleep(1)
 # Agregaremos personalizacion a nuestros jugadores, preguntando y almacenando sus nombres en una variable.
 nombre = input("\033[34mIngresa tu Nombre:\033[39m")
@@ -29,78 +29,78 @@ time.sleep(0.5)
 edad = input("\033[34mIngresa tu Edad:\033[39m")
 time.sleep(1)
 
-print(WHITE+"\nHola", nombre, apellido,
-      "Responde las siguientes preguntas escribiendo la letra de la alternativa y presionando 'Enter' para enviar tu respuesta:\n"+RESET)
+print("\033[36m\nHola", nombre, apellido,
+      "Responde las siguientes preguntas escribiendo la letra de la alternativa y presionando 'Enter' para enviar tu respuesta:\n")
 time.sleep(1)
 
 for numero_carga in range(3, 0, -1):
     print(numero_carga, "...")
     time.sleep(1)
-
+print("\n\033[39m")
 while iniciar_trivia == True:
     intentos += 1
     puntaje += puntaje
-    print("\nIntento número:", intentos)
+    print("Intento número:", intentos)
     input("Presiona Enter para continuar")
-    print(YELLOW + "comenzaras con :", puntaje, "puntos\n" + RESET)
+    print("\033[33m comenzaras con :", puntaje, "puntos\n\033[39m")
     time.sleep(1)
     # Aqui van las preuntas
-    print(CYAN + "Pregunta 1\n")
-    print("1) ¿Cuál fue la serie más vista en Netflix en el 2019?\n")
+    print("\033[36mPregunta 1\n")
+    print("1) ¿Cuál fue la serie más vista en Netflix en el 2019?\n\033[39m")
     # Colocamos las alternativas
-    print("a) Locke and Key")
-    print("b) Stranger Things")
-    print("c) Betty la Fea")
-    print("d) Better Call Saul")
+    alternativas_1 = ["a) Locke and Key", "b) Stranger Things",
+                      "c) Betty la Fea", "d) Better Call Saul"]
+    for number in range(0, 4):
+        print("\033[36m", alternativas_1[number], "\033[39m")
     # Almacenamos la respuesta del usuario en la variable "respuesta_1"
     respuesta_1 = input("\nTu respuesta: ")
     time.sleep(1)
     while respuesta_1 not in ("a", "b", "c", "d"):
         respuesta_1 = input(
-            "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: ")
+            "\033[35m Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: \033[39m")
     if respuesta_1 == "b":
-        puntaje += random.randint(5, 15)
-        print("\nMuy bien", nombre, "! Sigue asi!")
+        puntaje += random.randint(0, 50)
+        print("\033[32m\nMuy bien", nombre, "! Sigue asi!\033[39m")
     else:
-        puntaje -= random.randint(1, 5)
-        print("\nNo es la Respuesta correcta", nombre, "!")
+        puntaje -= random.randint(0, 60)
+        print("\033[31m\nNo es la Respuesta correcta", nombre, "!"+"\033[39m")
 
-    print(YELLOW + "\nHola", nombre, "vas obteniendo",
-          puntaje, "puntos en mi trivia" + RESET)
+    print("\033[33m\nHola", nombre, "vas obteniendo",
+          puntaje, "puntos en mi trivia" + "\033[39m")
 
     time.sleep(2)
-    print(CYAN + "\nPregunta 2\n")
-    print("\n2) ¿Cuál es el animal nacional de Perú?\n")
-    print("a) Gallito de las Rocas")
-    print("b) Condor")
-    print("c) Mono")
-    print("d) Cocodrillo" + RESET)
+    print("\033[36m\nPregunta 2\n")
+    print("\n2) ¿Cuál es el animal nacional de Perú?\n\033[39m")
+    alternativas_2 = ["a) Gallito de las Rocas", "b) Condor",
+                      "c) Mono", "d) Cocodrillo"]
+    for number in range(0, 4):
+        print("\033[36m",alternativas_2[number], "\033[39m")
     # Almacenamos la respuesta del usuario en la variable "respuesta_2"
-    respuesta_2 = input(GREEN + "\nTu respuesta: ")
+    respuesta_2 = input("\nTu respuesta: ")
     time.sleep(1)
     while respuesta_2 not in ("a", "b", "c", "d", "x"):
         respuesta_2 = input(
-            "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: " + RESET)
+            "\033[35mDebes responder a, b, c o d. Ingresa nuevamente tu respuesta: \033[39m")
     # Ahora, verificamos su respuesta para mandar un mensaje de acierto o de error
     if respuesta_2 == "b":
-        puntaje -= random.randint(1, 5)
-        print(RED + "Incorrecto!", nombre,
-              "El cóndor andino habita a lo largo de la Cordillera de los Andes y anida en acantilados rocosos."+RESET)
+        puntaje -= random.randint(0, 40)
+        print("\033[31m\nIncorrecto!\033[39m" "\033[32m", nombre,
+              "El cóndor andino habita a lo largo de la Cordillera de los Andes y anida en acantilados rocosos.\033[39m")
     elif respuesta_2 == "c":
-        puntaje -= random.randint(1, 5)
-        print(RED + "Incorrecto!", nombre,
+        puntaje -= random.randint(0, 40)
+        print(RED + "\nIncorrecto!", nombre,
               "El Mono es un animal mamifero que lo encontramos con mayor frecuencia en las zonas calidas y selvaticas."+RESET)
     elif respuesta_2 == "d":
-        puntaje -= random.randint(1, 5)
-        print(RED + "Incorrecto!", nombre,
+        puntaje -= random.randint(0, 40)
+        print(RED + "\nIncorrecto!", nombre,
               "El Cocodrilo son grandes reptiles semiacuaticos que viven en zonas tropicales." + RESET)
 
     elif respuesta_2 == "x":
-        puntaje += 50
-        print(GREEN + "Dato curioso: El gallito de las Rocas son grandes diseminadores de semillas en la Selva, lo que contribuye a la preservación de los bosques.")
+        puntaje += 100
+        print(GREEN + "Dato curioso: El gallito de las Rocas son grandes diseminadores de semillas en la Selva, lo que contribuye a la preservación de los bosques.\033[39m")
     else:
-        puntaje += random.randint(5, 15)
-        print("Muy bien", nombre, "!" + RESET)
+        puntaje += random.randint(0, 60)
+        print("\033[32m\nMuy bien", nombre, "!\033[39m")
 
     print(YELLOW + "\nHola", nombre, "vas obteniendo",
           puntaje, "puntos en mi trivia" + RESET)
@@ -108,27 +108,27 @@ while iniciar_trivia == True:
     time.sleep(2)
     print(CYAN + "\nPregunta 3\n")
     print("\n3) ¿En qué año llegó Cristóbal Colón al continente Americano?\n")
-    print("a) 1300")
-    print("b) 1492")
-    print("c) 1498")
-    print("d) 1500" + RESET)
+    alternativas_3 = ["a) 1300", "b) 1492",
+                      "c) 1498", "d) 1500"]
+    for number in range(0, 4):
+        print("\033[36m", alternativas_3[number], "\033[39m")
   # Almacenamos la respuesta del usuario en la variable "respuesta_"
-    respuesta_3 = input(GREEN + "\nTu respuesta: ")
+    respuesta_3 = input("\nTu respuesta: ")
     time.sleep(1)
     while respuesta_3 not in ("a", "b", "c", "d"):
         respuesta_3 = input(
-            "Debes responder a, b, c o d. Ingresa nuevamente tu respuesta: " + RESET)
+            "\033[35mDebes responder a, b, c o d. Ingresa nuevamente tu respuesta: \033[39m")
     if respuesta_3 == "a":
-        print(RED + "Totalmente incorrecto! ..." + RESET)
+        print(RED + "\nTotalmente incorrecto! ..." + RESET)
         puntaje = puntaje / 2
     elif respuesta_3 == "c":
-        print(RED + "Medianamente incorrecto" + RESET)
-        puntaje = puntaje + 5
+        print(RED + "\nMedianamente incorrecto" + RESET)
+        puntaje = puntaje + 25
     elif respuesta_3 == "d":
-        print(RED + "Incorrecto! ..." + RESET)
-        puntaje = puntaje - 5
+        print(RED + "\nIncorrecto! ..." + RESET)
+        puntaje = puntaje - 35
     else:
-        print(GREEN + "Muy bien", nombre, "!" + RESET)
+        print(GREEN + "\nMuy bien", nombre, "!" + RESET)
         puntaje = puntaje * 2
     time.sleep(1)
     print(YELLOW + "\nHola", nombre, "vas obteniendo",
@@ -142,10 +142,10 @@ while iniciar_trivia == True:
         puntaje = puntaje / 2
 
     elif numero_usuario == 1:
-        puntaje = puntaje + 5
+        puntaje = puntaje + 25
 
     elif numero_usuario == 3:
-        puntaje = puntaje - 5
+        puntaje = puntaje - 35
     else:
         numero_usuario == 4
         puntaje = puntaje * 2
@@ -155,32 +155,32 @@ while iniciar_trivia == True:
           "por jugar mi trivia, alcanzaste", puntaje, "puntos" + RESET)
 
     time.sleep(2)
-    print("\nPrueba tu Suerte\n")
+    print("\033[36m\nPrueba tu Suerte\n")
     num1 = int(input("Ingrese tu dia de Nacimiento:"))
     num2 = int(input("Ingrese tu edad:"))
-    op = input("Ingrese la operacion:")
+    op = input("Ingrese la operacion:\033[39m")
     time.sleep(1)
 
     while op not in ("+", "-", "/", "*"):
         op = input(
-            "Debes responder +, -, * o /. Ingresa nuevamente tu respuesta: ")
+            "\033[35mDebes responder +, -, * o /. Ingresa nuevamente tu respuesta: \033[39m")
     for numero_carga in range(5, 0, -1):
         print(numero_carga, "...")
         time.sleep(1)
     if op == "+":
-        print("Excelente, has obtenido",
-              num1 + num2 + puntaje, "puntos")
+        print("\033[\n32mExcelente, has obtenido",
+              num1 + num2 + puntaje, "puntos\033[39m")
     elif op == "-":
-        print("Excelente, has obtenido",
-              num1 - num2 + puntaje, "puntos")
+        print("\033[32m\nExcelente, has obtenido",
+              num1 - num2 + puntaje, "puntos\033[39m")
     elif op == "*":
-        print("Excelente, has obtenido",
-              num1 * num2 + puntaje, "puntos")
+        print("\033[32m\nExcelente, has obtenido",
+              num1 * num2 + puntaje, "puntos\033[39m")
     elif op == "/":
-        print("Excelente, has obtenido:",
-              num1 / num2 + puntaje, "puntos")
+        print("\033[32m\nExcelente, has obtenido:",
+              num1 / num2 + puntaje, "puntos\033[39m")
     else:
-        print(RED + "operador invalido ." + RESET)
+        print("\033[31moperador invalido .\033[39m")
 
     # Aqui finalizamos o reiniciamos la trivia
     print("\n¿Deseas intentar la trivia nuevamente?")
@@ -188,7 +188,7 @@ while iniciar_trivia == True:
         "Ingresa 'si' para repetir, o cualquier tecla para finalizar: ").lower()
     # Aqui el jugador decide
     if repetir_trivia != "si":
-        print("\nEspero", nombre,
-              "que lo hayas pasado bien, hasta pronto!")
+        print("\033[32m\nEspero", nombre,
+              "que lo hayas pasado bien, hasta pronto!\033[39m")
     # Cambiamos el valor de iniciar_trivia a False para evitar que se repita.
         iniciar_trivia = False
